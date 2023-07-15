@@ -22,6 +22,10 @@ const router =  createHashRouter([
     path: '/blog/:id',
     element: <BlogDetails/>
   },
+  {
+    path: '/create',
+    element: <BlogCreate/>
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
