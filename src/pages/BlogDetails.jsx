@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router-dom'
 const BlogDetails = () => {
   const data = useLoaderData()
   return (
-    <div className='container mx-auto p-3 text-white'>
+    <div>
       <h1 className='text-5xl font-bold'>{data.title}</h1>
       <figure className='aspect-video my-5'>
         <img className='w-full rounded-lg' src='https://via.placeholder.com/1280x720' alt="" />

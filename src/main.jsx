@@ -4,6 +4,8 @@ import "./index.css";
 
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
+import BlogLayout from "./Components/Layouts/BlogLayout";
+
 import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
 import BlogDetails from "./pages/BlogDetails";
@@ -17,6 +19,7 @@ const router = createHashRouter([
   },
   {
     path: "/blogs",
+    element: <BlogLayout />,
     children: [
       {
         path: "",
@@ -25,6 +28,17 @@ const router = createHashRouter([
           const res = await fetch("https://jsonplaceholder.typicode.com/posts");
           const data = await res.json();
           return data;
+        },
+      },
+      {
+        path: "create",
+        element: <BlogCreate />,
+        action: async ({ params, request, context }) => {
+          const form = await request.formData();
+          const res = Object.fromEntries(form);
+    
+          console.log(res);
+          return true;
         },
       },
       {
@@ -39,17 +53,6 @@ const router = createHashRouter([
         },
       },
     ],
-  },
-  {
-    path: "/create",
-    element: <BlogCreate />,
-    action: async ({ params, request, context }) => {
-      const form = await request.formData();
-      const res = Object.fromEntries(form);
-
-      console.log(res);
-      return true;
-    },
   },
   {
     path: "*",

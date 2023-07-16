@@ -7,7 +7,7 @@ const Blogs = () => {
 
   const Card = ({ title, body, id }) => (
     <article className="bg-gray-700 rounded-lg overflow-hidden">
-      <Link to={`/blog/${id}`}>
+      <Link to={`/blogs/${id}`}>
         <figure className="aspect-video">
           <img
             className="w-full"
@@ -24,7 +24,7 @@ const Blogs = () => {
   );
 
   return (
-    <div className="container mx-auto p-3">
+    <div >
       <h1 className="text-white font-bold text-4xl">Aprende algo nuevo</h1>
       <p className="text-gray-300 text-sm mb-3">
         En zeew Space puedes aprender nuevas habilidades, que quieres apreder
