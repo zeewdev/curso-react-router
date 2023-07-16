@@ -17,30 +17,35 @@ const router = createHashRouter([
   },
   {
     path: "/blogs",
-    element: <Blogs />,
-    loader: async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data = await res.json();
-      return data;
-    },
-  },
-  {
-    path: "/blog/:id",
-    element: <BlogDetails />,
-    loader: async ({ params }) => {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${params.id}`
-      );
-      const data = await res.json();
-      return data;
-    },
+    children: [
+      {
+        path: "",
+        element: <Blogs />,
+        loader: async () => {
+          const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+          const data = await res.json();
+          return data;
+        },
+      },
+      {
+        path: ":id",
+        element: <BlogDetails />,
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `https://jsonplaceholder.typicode.com/posts/${params.id}`
+          );
+          const data = await res.json();
+          return data;
+        },
+      },
+    ],
   },
   {
     path: "/create",
     element: <BlogCreate />,
     action: async ({ params, request, context }) => {
-      const form = await request.formData()
-      const res = Object.fromEntries(form)
+      const form = await request.formData();
+      const res = Object.fromEntries(form);
 
       console.log(res);
       return true;
